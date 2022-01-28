@@ -33,7 +33,7 @@ export function Counter() {
   );
 }
 
-export const CounterPresentational: React.VFC<{
+export interface CounterPresentationalProps {
   count: number;
   onDecrementClick: () => void;
   onIncrementClick: () => void;
@@ -43,7 +43,8 @@ export const CounterPresentational: React.VFC<{
   incrementByAmount: (value: number) => void;
   incrementAsync: (value: number) => void;
   incrementIfOdd: (value: number) => void;
-}> = ({
+}
+export const CounterPresentational: React.FC<CounterPresentationalProps> = ({
   onDecrementClick,
   onIncrementClick,
   count,
