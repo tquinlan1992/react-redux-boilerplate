@@ -1,34 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
-  selectCount,
-} from "./counterSlice";
 import styles from "./Counter.module.css";
+import useCounter from "./useCounter";
 
 export function Counter() {
-  const count = useAppSelector(selectCount);
-  const dispatch = useAppDispatch();
-  const [incrementAmount, setIncrementAmount] = useState("2");
-
-  const incrementValue = Number(incrementAmount) || 0;
+  const {
+    count,
+    onDecrementClick,
+    onIncrementClick,
+    incrementAmount,
+    incrementValue,
+    setIncrementAmount,
+    incrementByAmount,
+    incrementAsync,
+    incrementIfOdd,
+  } = useCounter();
 
   return (
     <CounterPresentational
-      count={count}
-      onDecrementClick={() => dispatch(decrement())}
-      onIncrementClick={() => dispatch(increment())}
-      incrementAmount={incrementAmount}
-      incrementValue={incrementValue}
-      setIncrementAmount={setIncrementAmount}
-      incrementByAmount={() => dispatch(incrementByAmount(incrementValue))}
-      incrementAsync={() => dispatch(incrementAsync(incrementValue))}
-      incrementIfOdd={() => dispatch(incrementIfOdd(incrementValue))}
+      {...{
+        count,
+        onDecrementClick,
+        onIncrementClick,
+        incrementAmount,
+        incrementValue,
+        setIncrementAmount,
+        incrementByAmount,
+        incrementAsync,
+        incrementIfOdd,
+      }}
     />
   );
 }
